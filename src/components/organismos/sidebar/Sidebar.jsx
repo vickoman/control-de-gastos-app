@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {v, LinksArray } from '../../../index';
+import {v, LinksArray, SecondarylinksArray, SidebarCard } from '../../../index';
 import {NavLink} from 'react-router-dom';
 export function Sidebar({state, setState}) {
     console.log("state", state);
@@ -29,6 +29,19 @@ export function Sidebar({state, setState}) {
                     </div>
                 ))}
                 <Divider />
+                {SecondarylinksArray.map(({icon, label, to}) => (
+                    <div 
+                        className={state?"Linkcontainer active" : "Linkcontainer"}
+                        key={label}
+                        >
+                        <NavLink to={to} className={({ isActive}) => `Links${isActive ? ` active` : ``}`}>
+                            <div className="Linkicon">{icon}</div>
+                            {state && (<span>{label}</span>)}
+                        </NavLink>
+                    </div>
+                ))}
+                <Divider />
+                { state &&(<SidebarCard />)}
             </Container>
         </Main>
     );
@@ -64,7 +77,21 @@ const Container =styled.div`
     z-index: 1;
     height: 100%;
     width: 65px;
+    transition: 0.3s ease-in-out;
+    overflow-y: auto;
 
+    &::-webkit-scrollbar {
+        width:  6px;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: ${({theme}) => theme.colorScroll};
+        border-radius: 10px;
+    }
+
+    h2 {
+        padding-top: 0.5rem;
+    }
     &.active {
         width: 220px;
     }
