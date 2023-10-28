@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Btnsave } from "../../index";
+import { Btnsave, v } from "../../index";
 
 
 export function LoginTemplate() {
@@ -13,7 +13,7 @@ export function LoginTemplate() {
                 <Titulo>Manolin</Titulo>
                 <p>Toma el control de tus gastos e ingresos 💰 </p>
                 <ContainerBtn>
-                    <Btnsave />
+                    <Btnsave titulo="Iniciar con Google" icono={<v.iconogoogle />} />
                 </ContainerBtn>
             </div>
         </Container>
