@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+import { LoginTemplate } from "../index";
+
 export function Login() {
     return (<Container>
-        <h1>Login</h1>
+        <LoginTemplate />
     </Container>);
 }
 
