@@ -1,20 +1,34 @@
 import { createContext, useState } from "react";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
-import { MyRoutes, Light, Dark, AuthContextProvider, Sidebar, Device, Menuhambur } from "./index";
-import { useLocation } from 'react-router-dom'
-import { ThemeProvider, styled } from 'styled-components'
+import { MyRoutes, Light, Dark, AuthContextProvider, Sidebar, Device, Menuhambur, useUsuariosStore } from "./index";
+import { useLocation } from 'react-router-dom';
+import { ThemeProvider, styled } from 'styled-components';
+import { useQuery } from "@tanstack/react-query";
 
 export const ThemeContext = createContext(null);
 
 function App() {
-  const [theme, setTheme] = useState("dark")
+  const { mostrarUsuarios, datausuarios } = useUsuariosStore();
+  const { pathname } = useLocation();
+  const theme =datausuarios?.tema==="0"?"light":"dark"
   const themeStyle = theme==="light" ? Light : Dark;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { isLoading, error } = useQuery(["mostrar usuarios"], () =>
+    mostrarUsuarios()
+  );
+  // const result = useQuery({ queryKey: ['Mostar usuarios'],
+  //   queryFn: mostrarUsuarios()
+  // });
 
-  const {pathname} = useLocation();
+  if (isLoading) {
+    return <h1>Cargando...</h1>;
+  }
+  if (error) {
+    return <h1>Error..</h1>;
+  }
   return (
     <>
-      <ThemeContext.Provider value={{ setTheme, theme }}>
+      <ThemeContext.Provider value={{ theme }}>
         <ThemeProvider theme={themeStyle}>
           <AuthContextProvider>
             {pathname!=='/login'? (

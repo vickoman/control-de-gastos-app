@@ -7,8 +7,8 @@ export function BtnCircular({
     bgcolor,
     textcolor,
     fontsize,
-    translateX,
-    translateY
+    translatex,
+    translatey
 }) {
     return (
         <Container 
@@ -17,8 +17,8 @@ export function BtnCircular({
             height={height}
             width={width}
             fontsize={fontsize}
-            translateX={translateX}
-            translateY={translateY}>
+            translatex={translatex}
+            translatey={translatey}>
             <span>{icono}</span>
         </Container>
     );
@@ -33,8 +33,8 @@ const Container =styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    transform: translatex(${(props) => props.translateX})
-        translateY(${(props) => props.translateY});
+    transform: translatex(${(props) => props.translatex})
+        translateY(${(props) => props.translatey});
 
     span {
         font-size: ${(props) => props.fontsize};

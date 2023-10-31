@@ -22,8 +22,8 @@ export function DataUser({stateConfig}) {
                 bgcolor="#ffffff"
                 textcolor="#181616"
                 fontsize="11px"
-                translateX="-50px"
-                translateY="-12px"
+                translatex="-50px"
+                translatey="-12px"
                 />
                 <span className="nombre">{user.name}</span>
                 {stateConfig.state && (<ListaMenuDesplegable data={DesplegableUser} top="62px" funcion={(tipo) => funcionXtipo(tipo)} />)}
