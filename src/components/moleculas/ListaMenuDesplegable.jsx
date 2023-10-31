@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {ItemDesplegable, v} from '../../index';
 export function ListaMenuDesplegable({data, top, funcion}) {
     return (
-        <Container top={top}>
+        <Container $top={top}>
             {data.map((item, idx) => {
                 return (
                     <ItemDesplegable key={idx} item={item} funcion={() => funcion(item.tipo)}/>
@@ -19,6 +19,6 @@ const Container =styled.div`
     position: absolute;
     background: ${({theme})=> theme.bg3};
     border-radius: 22px;
-    top: ${(props) => props.top};
+    top: ${(props) => props.$top};
     box-shadow: ${() => v.boxshadowGray};
 `
