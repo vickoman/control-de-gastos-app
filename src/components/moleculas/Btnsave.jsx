@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Icono } from "../../index";
 export function Btnsave({ funcion, titulo, bgcolor, icono}) {
     return (
-        <Container type="submit" bgcolor={bgcolor}>
+        <Container type="submit" $bgcolor={bgcolor}>
             <Icono>{icono}</Icono>
             <span className="btn" onClick={funcion}>
                 {titulo}
@@ -21,7 +21,7 @@ const Container =styled.button`
     background-color: initial;
     z-index: 2;
     .btn {
-        background: ${(props) => props.bgcolor};
+        background: ${(props) => props.$bgcolor};
         padding: 0.6em 1.3em;
         font-weight: 900;
         font-size: 18px;
