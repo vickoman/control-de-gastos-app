@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {v, InputBucadorLista, ConvertirCapitalize} from '../../index';
+import {v, InputBucadorLista, ConvertirCapitalize, Device, BtnCerrar } from '../../index';
 import iso from 'iso-country-currency';
 import { useState } from "react";
 export function ListaPaises({ setSelect, setState }) {
@@ -20,8 +20,8 @@ export function ListaPaises({ setSelect, setState }) {
     return (
         <Container>
             <header className="header">
-                <spam>Busca tu pais</spam>
-                <span className="close" onClick={setState}>{<v.iconocerrar />}</span>
+                <span>Busca tu pais</span>
+                <BtnCerrar funcion={setState} />
             </header>
             <InputBucadorLista
                 onChange={buscar}
@@ -40,46 +40,39 @@ export function ListaPaises({ setSelect, setState }) {
     );
 }
 
-const Container =styled.div`
-    margin-top: 10px;
-    position: absolute;
-    top:88%;
-    width: 100%;
+const Container = styled.div`
+  margin-top: 15px;
+  position: absolute;
+  top: 88%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.body};
+  border-radius: 10px;
+ 
+  padding: 10px;
+  gap: 10px;
+  color: ${({ theme }) => theme.text};
+  z-index: 3;
+  @media ${() => Device.tablet} {
+    width: 400px;
+  }
+
+  .titulo {
     display: flex;
-    flex-direction: column;
-    background-color: ${({theme})=>theme.bgtotal};
-    border: 3px solid #3a3a3a;
-    border-radius: 10px;
-    gap: 10px;
-    color: ${({theme})=>theme.text};
-    transition: 0.3s;
-
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: inherit;
-
-        .close {
-            cursor: pointer;
-            font-size: 25px;
-            transition: all 0.2s;
-
-            &:hover {
-                color: ${() => v.colorselector};
-                transform: scale(1.2);
-            }
-        }
-    }
-`
+    align-items: center;
+    justify-content: space-between;
+    background-color: ${({ theme }) => theme.body};
+  }
+`;
 const ItemContainer = styled.section`
-    gap: 10px;
-    display: flex;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    &:hover {
-        background-color: ${({theme})=>theme.bgtotal};
-    }
-`
+  gap: 10px;
+  display: flex;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: ${({theme})=>theme.bgtotal};
+  }
+`;
