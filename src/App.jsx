@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
-import { MyRoutes, Light, Dark, AuthContextProvider, Sidebar, Device, Menuhambur, useUsuariosStore } from "./index";
+import { MyRoutes, Light, Dark, AuthContextProvider, Sidebar, Device, Menuhambur, useUsuariosStore, Login } from "./index";
 import { useLocation } from 'react-router-dom';
 import { ThemeProvider, styled } from 'styled-components';
 import { useQuery } from "@tanstack/react-query";
@@ -16,9 +16,6 @@ function App() {
   const { isLoading, error } = useQuery(["mostrar usuarios"], () =>
     mostrarUsuarios()
   );
-  // const result = useQuery({ queryKey: ['Mostar usuarios'],
-  //   queryFn: mostrarUsuarios()
-  // });
 
   if (isLoading) {
     return <h1>Cargando...</h1>;
@@ -43,7 +40,7 @@ function App() {
                   <MyRoutes />
                 </Containerbody>
               </Container>
-            ) : (<MyRoutes />)}
+            ) : (<Login />)}
             <ReactQueryDevtools initialIsOpen={true} />
           </AuthContextProvider>
         </ThemeProvider>
