@@ -85,11 +85,11 @@ export const TemasData = [
   {
     icono: "🌞",
     descripcion: "light",
-   
+
   },
   {
     icono: "🌚",
     descripcion: "dark",
-    
+
   },
 ];
