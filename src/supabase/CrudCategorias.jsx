@@ -49,7 +49,7 @@ export async function EliminarCategoria(p) {
             .from('categorias')
             .delete()
             .eq('user_id', p.user_id)
-            .qa('id', p.id);
+            .eq('id', p.id);
         if (error) {
             Swal.fire({
                 icon: 'error',
@@ -58,27 +58,32 @@ export async function EliminarCategoria(p) {
                 timer: 1000
             });
         }
-    } catch (err) {
+    } catch (error) {
         alert(error.error_description || error.message + 'EliminarCategoria');
     }
 }
 
 export async function EditarCategoria(p) {
     try {
+        const {icono, descripcion, color, user_id, id } = p;
         const { error } = await supabase
-            .from('cagegorias')
-            .update(p)
-            .eq('user_id', p.user_id)
-            .eq('id', p.id)
+            .from('categorias')
+            .update({
+                icono,
+                descripcion,
+                color
+            })
+            .eq('user_id', user_id)
+            .eq('id', id);
         if (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `Error al eliminar ${p.descipcion}`,
-                timer: 1000
+                text: `${error}}`,
+                timer: 2000
             });
         }
-    } catch(err) {
+    } catch(error) {
         alert(error.error_description || error.message + "EditarCategoria");
     }
 }
