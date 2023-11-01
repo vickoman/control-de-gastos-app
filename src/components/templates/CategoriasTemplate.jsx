@@ -8,9 +8,14 @@ import {
     ListaMenuDesplegable,
     DataDesplegableTipo,
     BtnFiltro,
-    v
+    v,
+    RegistrarCategorias,
+    TablaCategorias,
 } from '../../index';
-export function CategoriasTemplate() {
+export function CategoriasTemplate({ data }) {
+    const [openRegistro, SetopenRegistro] = useState(false);
+    const [accion, setAccion] = useState('');
+    const [dataSelect, setdataSelect] = useState([]);
     const [state, setState] = useState();
     const [stateTipo, setStateTipo] = useState();
     const { colorCategoria, tituloBtnDes, bgCategoria, setTipo } =
@@ -36,8 +41,15 @@ export function CategoriasTemplate() {
         setState(!state);
         setStateTipo(false);
     }
+
+    function nuevoRegistro(){
+        SetopenRegistro(!openRegistro);
+        setAccion("Nuevo")
+        setdataSelect([])
+    }
     return (
         <Container onClick={cerrarDesplegables}>
+            {openRegistro && <RegistrarCategorias dataSelect={dataSelect} onClose={()=>SetopenRegistro(!openRegistro)} accion={accion}/>}
             <header className="header">
                 <Header stateConfig={{ state: state, setState: openUser }} />
             </header>
@@ -66,10 +78,12 @@ export function CategoriasTemplate() {
                         bgcolor={bgCategoria}
                         textcolor={colorCategoria}
                         icono={<v.agregar />}
-                        />
+                    />
                 </ContentFiltro>
             </section>
-            <section className="main"></section>
+            <section className="main">
+                <TablaCategorias data={data} SetopenRegistro={SetopenRegistro} setdataSelect={setdataSelect} setAccion={setAccion} />
+            </section>
         </Container>
     );
 }
@@ -111,10 +125,11 @@ const Container = styled.div`
 
     .main {
         grid-area: main;
-        background: rgba(230, 215, 211, 0.14);
-        display: flex;
-        align-items: center;
+        /* background: rgba(230, 215, 211, 0.14); */
     }
 `;
 
-const ContentFiltro = styled.div``;
+const ContentFiltro = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
