@@ -5,6 +5,7 @@ export function BtnDesplegable({text, bgcolor, textcolor, funcion}) {
         <Container 
             $bgcolor={bgcolor}
             $textcolor={textcolor}
+            onClick={funcion}
             >
             <span className="containerText">
                 {<v.iconoFlechabajo />}
@@ -22,4 +23,17 @@ const Container =styled.div`
     font-size: 23px;
     padding: 0.9rem 2.3rem;
     border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+
+    .containerText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &:hover {
+        background:rgba(77,77,77,0.5);
+    }
 `

@@ -5,7 +5,11 @@ export function ListaMenuDesplegable({data, top, funcion}) {
         <Container $top={top}>
             {data.map((item, idx) => {
                 return (
-                    <ItemDesplegable key={idx} item={item} funcion={() => funcion(item.tipo)}/>
+                    <ItemDesplegable 
+                        key={idx} 
+                        item={item} 
+                        funcion={() => funcion(item)}
+                        />
                 )
             })}
         </Container>

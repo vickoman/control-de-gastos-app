@@ -11,6 +11,7 @@ export function ConfiguracionTemplate() {
     const moneda = select.symbol ? select.symbol : datausuarios.moneda;
     const pais = select.countryName ? select.countryName : datausuarios.pais;
     const paisSeleccionadp = `🐽   ${moneda} ${pais}`;
+
     // Tema
     const iconodb = datausuarios.tema === "0" ? "☀️" : "🌑";
     const temadb = datausuarios.tema === "0" ? "light" : "dark";
