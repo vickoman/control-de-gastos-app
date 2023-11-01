@@ -1,36 +1,91 @@
-import styled from "styled-components";
-import {useState} from 'react';
-import { Header, ContentFiltros, BtnDesplegable } from '../../index';
+import styled from 'styled-components';
+import { useState } from 'react';
+import {
+    Header,
+    ContentFiltros,
+    BtnDesplegable,
+    useOperaciones,
+    ListaMenuDesplegable,
+    DataDesplegableTipo,
+    BtnFiltro,
+    v
+} from '../../index';
 export function CategoriasTemplate() {
     const [state, setState] = useState();
+    const [stateTipo, setStateTipo] = useState();
+    const { colorCategoria, tituloBtnDes, bgCategoria, setTipo } =
+        useOperaciones();
+
+    function cambiarTipo(p) {
+        setTipo(p);
+        setStateTipo(!stateTipo);
+        setState(false);
+    }
+
+    function cerrarDesplegables() {
+        setStateTipo(false);
+        setState(false);
+    }
+
+    function openTipo() {
+        setStateTipo(!stateTipo);
+        setState(false);
+    }
+
+    function openUser() {
+        setState(!state);
+        setStateTipo(false);
+    }
     return (
-        <Container>
-            <header className="header" >
-                <Header stateConfig={{state: state, setState: () => setState(!state)}} />
+        <Container onClick={cerrarDesplegables}>
+            <header className="header">
+                <Header stateConfig={{ state: state, setState: openUser }} />
             </header>
             <section className="tipo">
-                <ContentFiltros>
-                    <BtnDesplegable bgcolor="green" />
-                </ContentFiltros>
+                <div onClick={(e) => e.stopPropagation()}>
+                    <ContentFiltros>
+                        <BtnDesplegable
+                            textcolor={colorCategoria}
+                            bgcolor={bgCategoria}
+                            text={tituloBtnDes}
+                            funcion={openTipo}
+                        />
+                        {stateTipo && (
+                            <ListaMenuDesplegable
+                                data={DataDesplegableTipo}
+                                top="112%"
+                                funcion={(p) => cambiarTipo(p)}
+                            />
+                        )}
+                    </ContentFiltros>
+                </div>
             </section>
-            <section className="area2"></section>
+            <section className="area2">
+                <ContentFiltro>
+                    <BtnFiltro
+                        bgcolor={bgCategoria}
+                        textcolor={colorCategoria}
+                        icono={<v.agregar />}
+                        />
+                </ContentFiltro>
+            </section>
             <section className="main"></section>
         </Container>
     );
 }
 
-const Container =styled.div`
+const Container = styled.div`
     height: 100vh;
     padding: 15px;
     width: 100%;
-    background: ${({theme}) => theme.bgTotal};
-    color: ${({theme}) => theme.text};
+    background: ${({ theme }) => theme.bgTotal};
+    color: ${({ theme }) => theme.text};
     display: grid;
     grid-template:
-            "header" 100px
-            "tipo" 100px
-            "area2" 50px
-            "main" auto;
+        'header' 100px
+        'tipo' 100px
+        'area2' 50px
+        'main' auto;
 
     .header {
         grid-area: header;
@@ -46,11 +101,12 @@ const Container =styled.div`
         align-items: center;
     }
 
-    .area1 {
+    .area2 {
         grid-area: area2;
         background: rgba(79, 46, 38, 0.14);
         display: flex;
         align-items: center;
+        justify-content: end;
     }
 
     .main {
@@ -59,4 +115,6 @@ const Container =styled.div`
         display: flex;
         align-items: center;
     }
-`
+`;
+
+const ContentFiltro = styled.div``;
