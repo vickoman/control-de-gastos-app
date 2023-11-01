@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { MostratCategoria,InsertarCategoria, EditarCategoria } from "../index";
+import { MostratCategoria,InsertarCategoria, EditarCategoria, EliminarCategoria } from "../index";
 
 export const useCategoriasStore = create((set, get) => ({
 
