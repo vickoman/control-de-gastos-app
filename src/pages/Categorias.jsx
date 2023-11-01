@@ -12,17 +12,10 @@ export function Categorias() {
     if (error) {
         return <h1>Error...</h1>;
     }
-    console.log(dataCategoria);
+
     return (
         <Container>
-            {
-                dataCategoria.map((item, idx) => {
-                    return(
-                        <h1>{item.descripcion}</h1>
-                    )
-                })
-            }
-            <CategoriasTemplate />
+            <CategoriasTemplate data={dataCategoria} />
         </Container>
     );
 }
