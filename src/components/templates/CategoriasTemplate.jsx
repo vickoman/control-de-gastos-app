@@ -104,21 +104,21 @@ const Container = styled.div`
 
     .header {
         grid-area: header;
-        background: rgba(103, 93, 241, 0.14);
+        /* background: rgba(103, 93, 241, 0.14); */
         display: flex;
         align-items: center;
     }
 
     .tipo {
         grid-area: tipo;
-        background: rgba(229, 67, 26, 0.14);
+        /* background: rgba(229, 67, 26, 0.14); */
         display: flex;
         align-items: center;
     }
 
     .area2 {
         grid-area: area2;
-        background: rgba(79, 46, 38, 0.14);
+        /* background: rgba(79, 46, 38, 0.14); */
         display: flex;
         align-items: center;
         justify-content: end;

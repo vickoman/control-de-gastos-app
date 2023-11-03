@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from 'react';
-import { Header, Selector, v, ListaPaises, useUsuariosStore, ListaGenerica, TemasData, Btnsave } from '../../index';
+import { Header, Selector, v, ListaPaises, useUsuariosStore, ListaGenerica, TemasData, Btnsave, CardEliminarData } from '../../index';
 export function ConfiguracionTemplate() {
     const { datausuarios, editarTemaModenaUser } = useUsuariosStore();
     const [select, setSelect] = useState(false);
@@ -71,6 +71,8 @@ export function ConfiguracionTemplate() {
                     }
                 </ContentCard>
 
+                <CardEliminarData />
+
                 <Btnsave titulo="Guardar preferencias" bgcolor={v.colorselector} icono={<v.iconoguardar />} funcion={editar} />
             </section>
         </Container>
@@ -110,7 +112,6 @@ const Container =styled.div`
         flex-direction: column;
         justify-content: start;
         gap: 30px;
-        align-self: center;
         h1 {
         font-size: 3rem;
         }
