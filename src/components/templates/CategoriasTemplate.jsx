@@ -75,6 +75,7 @@ export function CategoriasTemplate({ data }) {
             <section className="area2">
                 <ContentFiltro>
                     <BtnFiltro
+                        funcion={nuevoRegistro}
                         bgcolor={bgCategoria}
                         textcolor={colorCategoria}
                         icono={<v.agregar />}
