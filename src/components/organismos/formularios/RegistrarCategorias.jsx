@@ -66,7 +66,7 @@ export function RegistrarCategorias({ onClose, dataSelect, accion }) {
 
                 onClose();
             } catch (error) {
-                alert('error ingresar Form');
+                console.log(error);
             }
         }
     }

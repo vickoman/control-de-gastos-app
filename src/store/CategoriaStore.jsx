@@ -9,7 +9,7 @@ export const useCategoriasStore = create((set, get) => ({
         set({dataCategoria: response});
         return response;
     },
-    insertarCategoria: async(p) => {
+    insertarCategorias: async(p) => {
         await InsertarCategoria(p);
         const {mostrarCategorias} = get();
         set(mostrarCategorias(p));
