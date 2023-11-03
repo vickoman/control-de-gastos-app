@@ -10,7 +10,8 @@ export const useOperaciones = create((set, get) => (
             set({
                 tituloBtnDes: p.text,
                 colorCategoria: p.color,
-                bgCategoria: p.bgcolor
+                bgCategoria: p.bgcolor,
+                tipo: p.tipo
             })
         }
     }
