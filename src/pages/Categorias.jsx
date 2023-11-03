@@ -7,12 +7,6 @@ export function Categorias() {
     const { tipo } = useOperaciones();
 
     const { isLoading, error } = useQuery(["Mostar Categorias", tipo], ()=> mostrarCategorias({user_id: datausuarios.id, tipo}))
-    if (isLoading) {
-        return <h1>Cargando...</h1>;
-    }
-    if (error) {
-        return <h1>Error...</h1>;
-    }
 
     return (
         <Container>
