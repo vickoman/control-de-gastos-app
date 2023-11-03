@@ -87,3 +87,28 @@ export async function EditarCategoria(p) {
         alert(error.error_description || error.message + "EditarCategoria");
     }
 }
+
+export async function DeleteCategoriasAll(p) {
+    try {
+        const { error } = await supabase
+            .from('categorias')
+            .delete()
+            .eq('user_id', p.user_id)
+        if (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Error al eliminar ${p.descipcion}`,
+                timer: 1000
+            });
+        }
+        Swal.fire({
+            icon: 'success',
+            title: 'Datos Reseteados',
+            showConfirmButton: false,
+            timer: 1000
+        });
+    } catch (error) {
+        alert(error.error_description || error.message + 'DeleteCategoriasAll');
+    }
+}

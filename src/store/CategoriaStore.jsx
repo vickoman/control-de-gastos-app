@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { MostratCategoria,InsertarCategoria, EditarCategoria, EliminarCategoria } from "../index";
+import { MostratCategoria,InsertarCategoria, EditarCategoria, EliminarCategoria, DeleteCategoriasAll } from "../index";
 
 export const useCategoriasStore = create((set, get) => ({
 
@@ -21,6 +21,11 @@ export const useCategoriasStore = create((set, get) => ({
     },
     editarCategoria: async(p) => {
         await EditarCategoria(p);
+        const {mostrarCategorias} = get();
+        set(mostrarCategorias(p));
+    },
+    eliminarCategoriasAll: async(p) => {
+        await DeleteCategoriasAll(p);
         const {mostrarCategorias} = get();
         set(mostrarCategorias(p));
     }
