@@ -4,10 +4,10 @@ import { supabase, ObtenerIdAuthSupabase } from '../index';
 export const MostrarUsuarios =  async() => {
     const idAuthSupabase = await ObtenerIdAuthSupabase();
     try {
-        const {data, error} = await supabase.from("usuarios").select().eq('id', idAuthSupabase);
+        const {data, error} = await supabase.from("usuarios").select().eq('id', idAuthSupabase).maybeSingle();
         if (error) throw error;
         if(data){
-            return data[0];
+            return data;
         }
     }catch(err) {
         // alert(error.error_description || error.message + "MostrarUsuarios");

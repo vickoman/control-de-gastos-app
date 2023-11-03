@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { CategoriasTemplate, useCategoriasStore, useUsuariosStore } from '../index';
+import { CategoriasTemplate, useCategoriasStore, useUsuariosStore, useOperaciones } from '../index';
 import { useQuery } from "@tanstack/react-query";
 export function Categorias() {
     const { dataCategoria, mostrarCategorias } = useCategoriasStore();
     const { datausuarios } = useUsuariosStore();
+    const { tipo } = useOperaciones();
 
-    const { isLoading, error } = useQuery(["Mostar Categorias", datausuarios.id], ()=> mostrarCategorias({user_id: datausuarios.id, tipo: 'i'}))
+    const { isLoading, error } = useQuery(["Mostar Categorias", tipo], ()=> mostrarCategorias({user_id: datausuarios.id, tipo}))
     if (isLoading) {
         return <h1>Cargando...</h1>;
     }
